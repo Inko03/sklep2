@@ -46,7 +46,7 @@ export default function Login() {
       setErrmail(null)
       setErrpassword(null)
       setErrpassword2(null)
-    fetch((islogin?'/newuser':'/getuser'),{
+    fetch((islogin?'https://sklep-api.onrender.com/newuser':'https://sklep-api.onrender.com/getuser'),{
       method:'POST',
       headers:{
         'Content-Type':'application/json'
