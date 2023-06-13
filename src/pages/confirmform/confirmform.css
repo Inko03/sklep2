@@ -1,0 +1,118 @@
+#photo-user{
+    height: 300px;
+    background-color: #ffffff;
+    width: 300px;
+    border-radius: 50%;
+    position: relative;
+}
+#photo-user::after{
+    position: absolute;
+    content: '';
+    width: 40%;
+    height: 40%;
+    border-radius:50%;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color:#EAEAEA;
+}
+#photo-user::before{
+    position: absolute;
+    content: '';
+    width: 25%;
+    height: 25%;
+    border-radius:50%;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background-color:#EAEAEA;
+}
+#confirm-user{
+    padding-top: 50px;
+    background-color:#EAEAEA;
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#inf-user{
+    height: 400px;
+    width: 100%;
+    background-color:#EAEAEA;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.user-inf{
+    width: 500px;
+    height: 50px;
+    background-color: white;
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+.email-user{
+    padding: 10px;
+    margin: 0px;
+    pointer-events: none;
+}
+#pop-cha{
+    position: absolute;
+    width: 600px;
+    height: 300px;
+    background-color: rgb(255, 255, 255);
+    z-index: 99;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+}
+.input-user{
+    width: 250px;
+    height: 30px;
+    border: 1px solid black;
+    background-color: transparent;
+    outline: none;
+    padding: 5px;
+}
+.span-user{
+    position: absolute;
+    left: 0px;
+    padding: 10px;
+    transition: 0.3s ease-out;
+    pointer-events: none;
+}
+.input-user:focus ~span,
+.input-user:valid ~span{
+    top: -10px;
+    background-color: white;
+    font-size: 0.7rem;
+    padding: 2px;
+    left: 10px;
+    transition: 0.3s ease-out;
+}
+.user-button{
+    margin: 10px;
+}
+.err{
+    border: 1px solid red;
+}
+.err-span{
+    color: red;
+}
+@media only screen and (max-width:950px){
+    .user-inf{
+        width: 300px;
+    }
+    #pop-cha{
+        width: 95%;
+    }
+}

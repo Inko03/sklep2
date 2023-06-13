@@ -1,0 +1,92 @@
+.photo-section{
+    height: 80vh;
+}
+.section-one{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+h2{
+    font-size:2rem;
+    text-align: center;
+    margin: 0px;
+    padding: 20px;
+    border-right: 1px solid black;
+}
+
+.section-one-right{
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+}
+.section-two{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.information{
+    padding: 30px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+h3{
+    color: white;
+    font-size: 40px;
+    margin:15px;
+}
+.footer{
+    height: 50px;
+    width: 100%;
+    background-color: black;
+    text-align: center;
+    color: white;
+}
+.button{
+    background-color: black;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 10px;
+    transition: 0.3s ease-out;
+    border: 1px solid white;
+}
+.button:hover{
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+}
+.transparent-button{
+    background-color: rgba(204, 204, 204, 0.774);
+    border: 1px solid black;
+    color: white;
+    padding: 10px;
+    transition: 0.3s ease-out;
+}
+.transparent-button:hover{
+    cursor: pointer;
+    background-color: rgb(75, 75, 75);
+}
+.section-three{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+h4{
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 0px;
+    padding: 20px;
+    border-right: 1px solid black;
+}
+@media only screen and (max-width:950px){
+    h4{
+        font-size: 1.2rem;
+        padding: 10px;
+    }
+}
