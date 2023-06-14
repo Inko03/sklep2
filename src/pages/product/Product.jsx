@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState,useContext} from 'react'
 import './product.css'
 import photo1 from '../../components/photo/but4.jpg'
 import photo2 from '../../components/photo/but3.jpg'
@@ -22,7 +22,7 @@ export default function Product() {
     const [dane, setDane]=useState([])
     useEffect(()=>{
         const getPost = async()=>{
-            await fetch('https://sklep-api.onrender.com/api/product/'+id)
+            await fetch('http://localhost:2000/api/product/'+id)
             .then(res=>res.json())
             .then(data=>{setDane(data)
                 setZam({name:data.name,price:data.price,img:data.img,color:"red",size:"38",quantity:1})})
@@ -79,6 +79,11 @@ export default function Product() {
     useEffect(()=>{
         sessionStorage.setItem('shopcart',JSON.stringify(cart))
     },[cart])
+    /////////////////////////////////////////////
+    const slides = [1,2,3,4]
+    const grab= (e)=>{
+        console.log(e.clientX)
+    }
   return (<div id='product-main'>
     {loader?<div id='all-loader'><p id='loading'>Loading</p>
   <div id='words'>
@@ -94,12 +99,11 @@ export default function Product() {
             <div id='bg-product'>
                 <img id='img-product' src={dane.img} alt="" />
             </div>
-    <div id='assaid'>
-       <p id='title'>{dane.name}</p> 
-        <p id='text-product'>{dane.description}</p>
-        <div>
-            <p>{dane.price} zł</p>
+        <div id='title-price'>
+            <p id='title'>{dane.name}</p>
+            <p id='price'>{dane.price} zł</p>
         </div>
+       <div id='description-shoes'>
         <div className='size-all'>
         {dane.size?.map((e)=>(
             <div className='size'>
@@ -108,38 +112,11 @@ export default function Product() {
             </div>))}
         </div>
         <div id='button'><button id='button-product'onClick={()=>addCart({name:zam.name,img:zam.img,price:zam.price,color:zam.color||"red",size:zam.size||"37",quantity:1})}>Dodaj do koszyka</button></div>
-    </div>
-    </div>
-    <div id='best-sell'>
-        <p >Najlepsze produkty:</p>
-        <div id='all-best'>
-            <div className='best-sell-product'>
-            <img className='sell-photo' src={photo1}/>
-            <p className='best-sell-name'>Botki</p>
-            <p className='best-sell-price'>123,00 zł</p>
-            </div>
-            <div className='best-sell-product'>
-            <img className='sell-photo' src={photo2}/>
-            <p className='best-sell-name'>Botki</p>
-            <p className='best-sell-price'>123,00 zł</p>
-            </div>
-            <div className='best-sell-product'>
-            <img className='sell-photo' src={photo3}/>
-            <p className='best-sell-name'>Botki</p>
-            <p className='best-sell-price'>123,00 zł</p>
-            </div>
-            <div className='best-sell-product'>
-            <img className='sell-photo' src={photo4}/>
-            <p className='best-sell-name'>Botki</p>
-            <p className='best-sell-price'>123,00 zł</p>
-            </div>
-            <div className='best-sell-product'>
-            <img className='sell-photo' src={photo1}/>
-            <p className='best-sell-name'>Botki</p>
-            <p className='best-sell-price'>123,00 zł</p>
-            </div>
+        <p id='text-product'>{dane.description}</p>
         </div>
+
     </div>
+
     </div>}
   </div>
   )

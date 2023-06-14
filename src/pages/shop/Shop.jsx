@@ -26,7 +26,7 @@ export default function Navigation() {
     //Fetch data from api
         useEffect(()=>{
             const getPost = async()=>{
-                await fetch('https://sklep-api.onrender.com/api/shop')
+                await fetch('http://localhost:2000/api/shop')
                 .then(res=>res.json())
                 .then((data)=>{
                     setDane(data)
@@ -150,6 +150,10 @@ export default function Navigation() {
                                         <p className='product-p'>Rozmiary: </p>
                                         {item.size.map((size,index)=>(<p className='size-product' key={index}>{size}</p>))}
                                     </div>
+                                </div>
+                                <div id='products-buttons'>
+                                    <button id='pr-left'>Dodaj do koszyka</button>
+                                    <button id='pr-right'>Więcej</button>
                                 </div>
                             </div>
         ))}

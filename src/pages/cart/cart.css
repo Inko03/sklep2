@@ -22,12 +22,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 30px;
+    margin: 20px;
+    padding: 10px;
     transition: 0.3s ease-out;
+    border: 1px solid #E8E8E8;
 }
 #all-cart-products:hover{
-    box-shadow: 5px 6px black;
-    transform: translateY(-5px);
+border: 1px solid rgb(182, 182, 182);
 }
 .cart-product{
     background-color: white;

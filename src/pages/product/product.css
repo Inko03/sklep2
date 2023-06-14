@@ -1,68 +1,42 @@
-
 #cart{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     min-height: 100vh;
-    align-items: center;
+display: flex;
+justify-content: center;
+background-color: #EAEAEA;
+}
+#big-screen{
     width: 100%;
-}
-#text-product{
-    width: 400px;
-}
-#bg-product{
-    height: 400px;
-    padding: 10px;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 20% 20% 20% 20% 20%;
 }
 #img-product{
+    height: 100%;
     object-fit: contain;
-    height: 100%;
 }
-#img-product-d{
-    object-fit: cover;
-    height: 100%;
-    width: 166.66px;
+#bg-product{
+    grid-row: 2/span 3;
+    grid-column: 1/span 2;
 }
-#bg-product-d{
-    width: 100%;
-    height: 100px;
+#title-price{
+    grid-column: 3;
+    grid-row: 2;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
-.input-radio{
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    -ms-appearance: none;
-    -o-appearance: none;
-    appearance: none; 
-    margin: 0px;
-    height: 30px;
-    width: 30px;
-    border-radius: 5px;
-    margin: 5px;
-    transition: 0.1s ease-out;
-    cursor: pointer;
-}
-.blue{
-    background-color: blue;
-}
-.black{
-    background-color: black;
-}
-.green{
-    background-color: green;
-}
-.brown{
-    background-color: rgb(112, 45, 0);
-}
-.red{
-    background-color: rgb(196, 0, 0);
+#description-shoes{
+    padding: 10px;
+    grid-row: 3/span 2;
+    background-color: #EAEAEA;
 }
 .input-radio:hover{
-    border: 2px solid black;
+    border: 3px solid black;
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
 }
 .input-radio:checked{
-    border: 3px solid black;
+    border: 3px solid rgb(214, 214, 214);
 }
 .input-radio-size{
     -webkit-appearance: none;
@@ -72,15 +46,13 @@
     appearance: none; 
     width: 80px;
     height: 30px;
-    border: 2px solid black;
-    border-radius: 9px;
+    border: 2px solid rgb(194, 194, 194);
     margin: 0px;
     transition: 0.1s ease-out;
     cursor: pointer;
 }
 .input-radio-size:hover{
-    background-color: rgba(182, 182, 182, 0.288);
-    box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.75);
+    border: 2px solid black;
 }
 .span-size{
     position: absolute;
@@ -95,30 +67,42 @@
     height: 30px;
 }
 .input-radio-size:checked{
-    background-color: rgba(116, 116, 116, 0.288);
+    border: 2px solid black;
 }
 .size-all{
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
     gap: 10px;
     padding-left:5px;
 }
 #assaid{
-    width: 400px;
+text-align: center;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+padding: 10px;
 }
 #description{
     width: 400px;
     text-align: left;
 }
 #title{
+    margin: 10px;
+    text-align: center;
     font-size: 35px;
     font-weight: 500;
+}
+#price{
+    margin: 5px;
+    text-align: center;
 }
 #button-product{
     background-color: black;
     color: white;
     border: 2px solid black;
-    border-radius: 9px;
     padding: 10px;
     padding-left: 30px;
     padding-right: 40px;
@@ -156,73 +140,46 @@
     top: 10px;
     transition: 0.3s ease-in-out;
 }
-#best-sell{
-    width: 100%;
-    height: 255px;
-    text-align: center;
-    font-weight: 600;
-}
-#all-best{
-    width: 100%;
-    height: 100%;
+#slide{
+    padding: 10px;
+    grid-row: 5;
+    height: 300px;
+    grid-column: 1/span 3;
+    overflow: hidden;
     display: grid;
-    grid-auto-flow: column;
+    grid-template-rows: 100%;
     gap: 5px;
-    overflow-x: auto;
+    grid-auto-flow: column;
+    background-color: #EAEAEA;
 }
-.best-sell-product{
-    height: 96%;
-    width: 250px;
-    padding-left: 5px;
-    padding-right: 5px;
-    border: 1px solid rgb(196, 196, 196);
-    position: relative;
-}
-.sell-photo{
-    height: 100%;
-    object-fit: contain;
-}
-#big-screen{
+.insiede-sp{
+    width: 300px;
+    height: 300px;
+    margin-top: 15px;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: red;
 }
-.best-sell-name{
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    padding: 0.2em;
-}
-.best-sell-price{
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    padding: 0.2em;
-}
-@media only screen and (max-width:950px){
+@media only screen and (max-width:900px){
     #big-screen{
-        display: block;
-    }
-    #cart{
-        flex-direction: column;
         width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows:15% 40% 30% 15% ;
     }
     #bg-product{
-        margin-top: 80px;
-        height: 300px;
+        grid-row: 2;
+        grid-column: 1;
     }
-    #title{
-        font-size: 30px;
+    #description-shoes{
+        padding: 10px;
+        grid-row: 3;
+        background-color: #EAEAEA;
     }
-    #text-product{
-        width: 300px;
-        text-align: center;
-    }
-    #assaid{
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .size-all{
-        justify-content: center;
+    #title-price{
+        grid-column: 1;
+        grid-row: 1;
     }
 }

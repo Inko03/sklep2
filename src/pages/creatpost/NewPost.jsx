@@ -28,7 +28,7 @@ export default function NewPost() {
       console.log(dane)
     }
     const send = ()=>{
-      fetch(('/add'),{
+      fetch(('http://localhost:2000/api/add'),{
         method:'POST',
         headers:{
           'Content-Type':'application/json',
