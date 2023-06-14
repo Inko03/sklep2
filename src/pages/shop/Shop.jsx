@@ -26,7 +26,7 @@ export default function Navigation() {
     //Fetch data from api
         useEffect(()=>{
             const getPost = async()=>{
-                await fetch('http://localhost:2000/api/shop')
+                await fetch('https://sklep-api.onrender.com/api/shop')
                 .then(res=>res.json())
                 .then((data)=>{
                     setDane(data)
