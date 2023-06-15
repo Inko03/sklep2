@@ -43,7 +43,7 @@ export default function Navigation() {
         '/static/media/photo2.7a2fb6892c8541b62330.jpg'
     ];
     //Set slider
-    const[currentIndex, setCurrentIndex]= useState(0)
+const[currentIndex, setCurrentIndex]= useState(0)
     const goToPrev = () =>{
         const isFirstSlide = currentIndex === 0
         const newIndex = isFirstSlide ? slides.length-1 : currentIndex-1
@@ -64,6 +64,31 @@ export default function Navigation() {
     //console.log(dane)
     const value = cart.length
     //console.log(cart.map((item)=>item.price))
+    const[zam,setZam]= useState(dane)
+    const [msg,setMsg] =useState(false)
+    const [msgval,setMsgval] =useState("") 
+    const name = cart.map((item)=>item.name)
+    const addCart=(value)=>{
+        const newProduct ={
+            ...value,
+            count:1
+        }
+        const same = name.filter((item)=>item===newProduct.name)
+        if(same.length===0){
+            console.log('Not the same')
+            setCart([
+                ...cart,
+                newProduct
+            ])
+            setMsg(true)
+            setMsgval("Produkt dodany do koszyka")
+        }else{
+            console.log('The same')
+            setMsg(true)
+            setMsgval("Produkt jest już w koszyku")
+        }
+        window.scrollTo(0, 0);
+    }
     //Set to loclalSorage
     useEffect(()=>{
         sessionStorage.setItem('shopcart',JSON.stringify(cart))
@@ -153,7 +178,7 @@ export default function Navigation() {
                                 </div>
                                 <div id='products-buttons'>
                                     <Link to={`/product/${item._id}`} className='a-pr'><button id='pr-left'>Więcej</button></Link>
-                                    <button id='pr-right'>Dodaj do koszyka</button>
+                                    <button id='pr-right' onClick={()=>addCart({name:zam.name,img:zam.img,price:zam.price,color:zam.color||"red",size:zam.size||"37",quantity:1})}>Dodaj do koszyka</button>
                                 </div>
                             </div>
         ))}
@@ -162,4 +187,5 @@ export default function Navigation() {
         <div className='footer'>Inko03</div>
     </div>
   );
+
 }
