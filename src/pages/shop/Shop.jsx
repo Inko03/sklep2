@@ -75,7 +75,6 @@ const[currentIndex, setCurrentIndex]= useState(0)
         }
         const same = name.filter((item)=>item===newProduct.name)
         if(same.length===0){
-            console.log('Not the same')
             setCart([
                 ...cart,
                 newProduct
@@ -83,7 +82,6 @@ const[currentIndex, setCurrentIndex]= useState(0)
             setMsg(true)
             setMsgval("Produkt dodany do koszyka")
         }else{
-            console.log('The same')
             setMsg(true)
             setMsgval("Produkt jest już w koszyku")
         }
@@ -102,7 +100,6 @@ const[currentIndex, setCurrentIndex]= useState(0)
     if(login){
             setTimeout(()=>{dispatch({type:"REGISTER-N",payload:currentUser})},3000)
     }
-    console.log(currentUser)
   return (
     <div id='main'>
         <div className={login?"pop-log-reg is":"pop-log-reg"}>{message}</div>
