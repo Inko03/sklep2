@@ -11,6 +11,9 @@ background-color: #EAEAEA;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 20% 20% 20% 20% 20%;
 }
+#text-product{
+    text-align: center;
+}
 #img-product{
     height: 100%;
     object-fit: contain;
