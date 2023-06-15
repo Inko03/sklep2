@@ -175,7 +175,6 @@ const[currentIndex, setCurrentIndex]= useState(0)
                                 </div>
                                 <div id='products-buttons'>
                                     <Link to={`/product/${item._id}`} className='a-pr'><button id='pr-left'>Więcej</button></Link>
-                                    <button id='pr-right' onClick={()=>addCart({name:zam.name,img:zam.img,price:zam.price,color:zam.color||"red",size:zam.size||"37",quantity:1})}>Dodaj do koszyka</button>
                                 </div>
                             </div>
         ))}
