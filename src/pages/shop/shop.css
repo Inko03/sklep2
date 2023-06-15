@@ -479,6 +479,7 @@ border: 1px solid rgb(185, 185, 185);
         background-color: black;
         font-weight: 600;
         color: white;
+        cursor: pointer;
     }
     #pr-right{
         width: 50%;
