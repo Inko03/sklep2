@@ -54,7 +54,6 @@ export default function Product() {
         }
         const same = name.filter((item)=>item===newProduct.name)
         if(same.length===0){
-            console.log('Not the same')
             setCart([
                 ...cart,
                 newProduct
@@ -62,7 +61,6 @@ export default function Product() {
             setMsg(true)
             setMsgval("Produkt dodany do koszyka")
         }else{
-            console.log('The same')
             setMsg(true)
             setMsgval("Produkt jest już w koszyku")
         }
