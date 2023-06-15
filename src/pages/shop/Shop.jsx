@@ -152,8 +152,8 @@ export default function Navigation() {
                                     </div>
                                 </div>
                                 <div id='products-buttons'>
-                                    <button id='pr-left'>Dodaj do koszyka</button>
-                                    <button id='pr-right'>Więcej</button>
+                                    <Link to={`/product/${item._id}`} className='a-pr'><button id='pr-left'>Więcej</button></Link>
+                                    <button id='pr-right'>Dodaj do koszyka</button>
                                 </div>
                             </div>
         ))}
