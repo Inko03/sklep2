@@ -59,31 +59,10 @@ const[currentIndex, setCurrentIndex]= useState(0)
 
     // Add to cart
     //console.log(dane)
-    const value = cart.length
     //console.log(cart.map((item)=>item.price))
     const[zam,setZam]= useState(dane)
     const [msg,setMsg] =useState(false)
     const [msgval,setMsgval] =useState("") 
-    const name = cart.map((item)=>item.name)
-    const addCart=(value)=>{
-        const newProduct ={
-            ...value,
-            count:1
-        }
-        const same = name.filter((item)=>item===newProduct.name)
-        if(same.length===0){
-            setCart([
-                ...cart,
-                newProduct
-            ])
-            setMsg(true)
-            setMsgval("Produkt dodany do koszyka")
-        }else{
-            setMsg(true)
-            setMsgval("Produkt jest już w koszyku")
-        }
-        window.scrollTo(0, 0);
-    }
 
     //Set to loclalSorage
     const {currentUser} = useContext(AuthContext)
