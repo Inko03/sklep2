@@ -28,7 +28,6 @@ export default function Confirmform() {
         };
         getPost();
     },[])
-    console.log(dane.email)
     const admin = false
     const {currentUser} = useContext(AuthContext)
     const {dispatch}= useContext(AuthContext)
@@ -65,9 +64,8 @@ export default function Confirmform() {
         setActive(false)
         setNewdata(null)
     }
-    console.log(newdata)
     const sendData = async()=>{
-        await fetch(('http://localhost:2000/api/editdata'),{
+        await fetch(('https://sklep-api.onrender.com/api/editdata'),{
             method:'PUT',
             headers:{
                 "content-type":"application/json",
@@ -81,14 +79,12 @@ export default function Confirmform() {
         })            
         .then(res=>res.json())
         .then((data)=>{
-            console.log(data)
             setActive(false)
             dispatch({type:"LOGOUT"})
             navigate('/shop')
         })
         .catch((err)=>console.log(err))
     }
-    console.log(type,email,newdata)
   return (
     <div id='user'>
         {active?<div id='pop-cha'>

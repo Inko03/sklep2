@@ -106,7 +106,7 @@ export default function Login() {
               <div className='div-input'><input className={`login-input ${errpassword2?"error":null}`} id='passwordtwo' type="password" required onChange={(e)=>setData(e)}/><span className='login-span'>{errpassword2?errpassword2:"Hasło"}</span></div>
               <button id='button-login'  onClick={send} >Zarejestruj się</button>
               <p id='register-login'>Posiadasz już konto?<Link id='link-to' onClick={()=>islogin?(setIsLogin(false), setErrmail(null),setErrpassword(null)):(setIsLogin(true), setErrmail(null),setErrpassword(null))}>Zaloguj się</Link></p>
-              <p id='secury-msg'>Pamiętej że hasło powinno składać się z jednego znaku specialnego, liter i cyfr(strona testowa nie używaj prawidzyych danych logowania)</p>
+              <p id='secury-msg'>Pamiętej że hasło powinno składać się z jednego znaku specialnego, liter i cyfr(strona testowa nie używaj prawidzych danych logowania)</p>
         </div>:<div id='login'>
               <p id='title-login'>PULSO</p>
               <div className='div-input'><input className={`login-input ${errmail?"error":null}`} id='email' type="text" required onChange={(e)=>setData(e)} /><span className='login-span'>{errmail?errmail:"Email"}</span></div>

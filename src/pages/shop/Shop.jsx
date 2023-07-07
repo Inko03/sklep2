@@ -37,7 +37,7 @@ export default function Navigation() {
         '/static/media/photo2.7a2fb6892c8541b62330.jpg'
     ];
     //Set slider
-    const[currentIndex, setCurrentIndex]= useState(0)
+const[currentIndex, setCurrentIndex]= useState(0)
     const goToPrev = () =>{
         const isFirstSlide = currentIndex === 0
         const newIndex = isFirstSlide ? slides.length-1 : currentIndex-1
@@ -54,15 +54,52 @@ export default function Navigation() {
     };
     //Select data
     const produkt = lok?dane.filter((item)=>item.category===lok):dane
+<<<<<<< HEAD
 //////////////////////////////////////////////////////
+=======
+    // Add to cart
+    //console.log(dane)
+    const value = cart.length
+    //console.log(cart.map((item)=>item.price))
+    const[zam,setZam]= useState(dane)
+    const [msg,setMsg] =useState(false)
+    const [msgval,setMsgval] =useState("") 
+    const name = cart.map((item)=>item.name)
+    const addCart=(value)=>{
+        const newProduct ={
+            ...value,
+            count:1
+        }
+        const same = name.filter((item)=>item===newProduct.name)
+        if(same.length===0){
+            setCart([
+                ...cart,
+                newProduct
+            ])
+            setMsg(true)
+            setMsgval("Produkt dodany do koszyka")
+        }else{
+            setMsg(true)
+            setMsgval("Produkt jest już w koszyku")
+        }
+        window.scrollTo(0, 0);
+    }
+>>>>>>> cd28c38876e8f5595ccb4d93213d1cd39273b684
     //Set to loclalSorage
     const {currentUser} = useContext(AuthContext)
     const{login} = useContext(AuthContext)
     const {dispatch}= useContext(AuthContext)
     const {Cartdispatch} = useContext(CartContext)
     const {message}= useContext(AuthContext)
+<<<<<<< HEAD
     const [nowtime,setNowTime] = useState()
     const {Cartmsg}=useContext(CartContext)
+=======
+    const [small,setSamll]=useState(false)
+    if(login){
+            setTimeout(()=>{dispatch({type:"REGISTER-N",payload:currentUser})},3000)
+    }
+>>>>>>> cd28c38876e8f5595ccb4d93213d1cd39273b684
   return (
     <div id='main'>
         <Popup/>
@@ -119,7 +156,10 @@ export default function Navigation() {
                                 </div>
                                 <div id='products-buttons'>
                                     <Link to={`/product/${item._id}`} className='a-pr'><button id='pr-left'>Więcej</button></Link>
+<<<<<<< HEAD
                                     <button id='pr-right' onClick={()=>{Cartdispatch({type:'ADD_NEW',payload:{name:item.name,img:item.img,price:item.price,quantity:1,size:35}})}}>Dodaj do koszyka</button>
+=======
+>>>>>>> cd28c38876e8f5595ccb4d93213d1cd39273b684
                                 </div>
                             </div>
         ))}
