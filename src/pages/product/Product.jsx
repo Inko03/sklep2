@@ -55,7 +55,7 @@ export default function Product() {
     const [dane, setDane]=useState([])
     useEffect(()=>{
         const getPost = async()=>{
-            await fetch('https://sklep-api.onrender.com/api/product/'+id)
+            await fetch('http://localhost:2000/api/product/'+id)
             .then(res=>res.json())
             .then(data=>{setDane(data)
                 setZam({name:data.name,price:data.price,img:data.img,color:"red",size:"38",quantity:1})})
