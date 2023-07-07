@@ -43,9 +43,15 @@ export default function Popup() {
         //hover on pop up
         if(triger){clearInterval(id)};
         //exit from pop up
-        if(exit){popupTarget.current.className="pop-log-reg",setTimeout(()=>{setFrame(0)},500),clearInterval(id),setExit(false),setActive(false)};
+        if(exit){
+          popupTarget.current.className="pop-log-reg";
+          setTimeout(()=>{setFrame(0)},500);
+          clearInterval(id);
+          setExit(false);
+          setActive(false);
+        }
 
-        return () => {clearInterval(id)};
+        return ()=>{clearInterval(id)};
       }
     },[active,triger,exit]);
     //set new frame to progres bar time
