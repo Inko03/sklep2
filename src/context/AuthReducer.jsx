@@ -4,16 +4,21 @@ const AuthReducer = (state,action)=>{
             return {currentUser:action.payload,message:"Zalogowano",login:true}
         }
         case "LOGOUT":{
-            return {currentUser:null,login:true,message:"Wylogowano"}
+            return {currentUser:null,login:false,message:"Wylogowano"}
         }
         case "REGISTER":{
             return {currentUser:null,login:true,message:"Konto zarejstrowano, można się zalogować"}
         }
         case "REGISTER-N":{
-            return {currentUser:action.payload,login:false,message:null}
+            if(state.currentUser){
+                return{currentUser:state.currentUser,message:null}
+            }else{
+                return{currentUser:null,message:null}
+            }
+            
         }
         case "UPDATE-USER":{
-            return {currentUser:null,login:true,message:"Token wygasł, zaloguj się ponownie"}
+            return {currentUser:null,login:false,message:"Token wygasł, zaloguj się ponownie"}
         }
         default:
             return state

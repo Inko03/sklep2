@@ -1,12 +1,13 @@
-import React, { useEffect, useReducer, useState } from 'react'
+import React, { useContext, useEffect, useReducer, useState } from 'react'
 import {Link} from 'react-router-dom'
 import './cart.css'
+import CartContext from '../../context/CartContext'
 export default function Cart() {
-
-
+    const {Cartdispatch} = useContext(CartContext)
+    const {Cart} = useContext(CartContext)
     const [cart,setCart] = useState(()=>{
         const initialValue = []
-        const cart = sessionStorage.getItem('shopcart') 
+        const cart = sessionStorage.getItem('cart') 
         if(cart!==null){
             return JSON.parse(cart)
         }
@@ -57,10 +58,10 @@ switch(action.type){
 }
 const [state,dispatch] = useReducer(reducer,cart)
 let price = 0
-let lengthcart = state.length
-state.map(item=>price+=item.quantity*item.price)
+let lengthcart = Cart.length
+Cart.map(item=>price+=item.quantity*item.price)
 useEffect(()=>{
-    sessionStorage.setItem('shopcart',JSON.stringify(state))
+    sessionStorage.setItem('cart',JSON.stringify(state))
 },[state])
   return (
     <div id='cart-main'>
@@ -68,14 +69,14 @@ useEffect(()=>{
           <Link to='/shop'><div id='back-to'>←</div></Link>
           <p id='cart-p'>Twój koszyk:</p>
     </div>
-        {!lengthcart?<div>Koszyk pusty</div>:state.map((item,index)=>(
+        {!lengthcart?<div>Koszyk pusty</div>:Cart.map((item,index)=>(
                   <div id='all-cart-products' key={index} >
                   <div className='cart-product'>
                   <img src={item.img} alt="" className='cart-photo'/>
                   <div className='single-cart'>
                       <div className='selection-cart'>
                           <label htmlFor="size">Rozmiar</label>
-                          <select name="size" id="size" className='box' onChange={(e)=>dispatch({type:'size',name:item.name,size:e.target.value})}>
+                          <select name="size" id="size" className='box' onChange={(e)=>Cartdispatch({type:'SIZE',name:item.name,size:e.target.value})}>
                               <option style={{display:'none'}}>{item.size}</option>
                               <option value="35">35</option>
                               <option value="36">36</option>
@@ -91,15 +92,15 @@ useEffect(()=>{
                       <div className='selection-cart'>
                           <p className='cart-p-in'>Ilość</p>
                           <p className='cart-p-in'>{item.quantity}</p>
-                          <p className='cart-p-in minus'id={index} onClick={()=>dispatch({type:'decrement',name:item.name})}>-</p>
-                          <p className='cart-p-in plus' id={index} onClick={()=>dispatch({type:'increment',name:item.name})}>+</p>
+                          <p className='cart-p-in minus'id={index} onClick={()=>Cartdispatch({type:'DECREMENT',name:item.name})}>-</p>
+                          <p className='cart-p-in plus' id={index} onClick={()=>Cartdispatch({type:'INCREMENT',name:item.name})}>+</p>
                       </div>
                       <div className='selection-cart'>
                           <p className='cart-p-in'>Kwota</p>
                           <p className='cart-p-in'>{`${item.price*item.quantity} zł`}</p>
                       </div>
                   </div>
-                  <button className='button-cart' onClick={()=>dispatch({type:'delete',name:item.name})}>Usuń</button>
+                  <button className='button-cart' onClick={()=>Cartdispatch({type:'DELETE',name:item.name})}>Usuń</button>
                   </div>
               </div>
             )) }

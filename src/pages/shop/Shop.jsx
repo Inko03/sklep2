@@ -6,18 +6,12 @@ import photo from '../../components/photo/photog.jpg'
 import photo2 from '../../components/photo/buty.jpg'
 import photo1 from '../../components/photo/photog.jpg'
 import AuthContext from '../../context/AuthContext';
-
+import Navbar from '../../components/navbar/Navbar'
+import CartContext from '../../context/CartContext';
+import Popup from '../../components/popup/Popup';
 export default function Navigation() {
     const [dane, setDane]=useState([])
     const [loader, setLoader]=useState(true)
-    const [cart, setCart] = useState(()=>{
-        const inistialValue = []
-        const cart = sessionStorage.getItem('shopcart')
-        if(cart!==null){
-            return JSON.parse(cart)
-        }
-        return inistialValue
-    })
     useEffect(() => {
         window.scrollTo(0, 0);
       }, []);
@@ -26,7 +20,7 @@ export default function Navigation() {
     //Fetch data from api
         useEffect(()=>{
             const getPost = async()=>{
-                await fetch('http://localhost:2000/api/shop')
+                await fetch('https://sklep-api.onrender.com/api/shop')
                 .then(res=>res.json())
                 .then((data)=>{
                     setDane(data)
@@ -60,47 +54,19 @@ export default function Navigation() {
     };
     //Select data
     const produkt = lok?dane.filter((item)=>item.category===lok):dane
-    // Add to cart
-    //console.log(dane)
-    const value = cart.length
-    //console.log(cart.map((item)=>item.price))
+//////////////////////////////////////////////////////
     //Set to loclalSorage
-    useEffect(()=>{
-        sessionStorage.setItem('shopcart',JSON.stringify(cart))
-    },[cart])
-    const admin = false
     const {currentUser} = useContext(AuthContext)
     const{login} = useContext(AuthContext)
     const {dispatch}= useContext(AuthContext)
+    const {Cartdispatch} = useContext(CartContext)
     const {message}= useContext(AuthContext)
-    const [small,setSamll]=useState(false)
-    if(login){
-            setTimeout(()=>{dispatch({type:"REGISTER-N",payload:currentUser})},3000)
-    }
-    console.log(currentUser)
+    const [nowtime,setNowTime] = useState()
+    const {Cartmsg}=useContext(CartContext)
   return (
     <div id='main'>
-        <div className={login?"pop-log-reg is":"pop-log-reg"}>{message}</div>
-        <div className='nav-bar'>
-            <div className='title'>
-                <span>PULSO</span>
-            </div>
-        <div id='small-menu' onClick={()=>{small?setSamll(false):setSamll(true)}}><span className={`burger-menu ${small?"active-menu":null}`}></span></div>
-            <div className={small?"active-links":"nav-bar-links"}>
-                <Link to='/'><p className='p'>Home</p></Link>
-                   {currentUser?<Link to='/confirm'><p className='p'>Konto</p></Link>:<Link to='/zaloguj'><p className='p'>Zaloguj</p></Link>}
-                <Link to='/cart' id='shop'><p className='p pop'><GrShop size='1.2rem'/><div className='popup'>{value}</div> <div className='cart-pop'>
-                    {cart.map((item, index)=>(
-                        <div id='pop-shop' key={index} >
-                            <img src={item.img} className='popup-shop-cart' alt='' />
-                            <p className='text-shop'>{item.name}</p>
-                            <p className='text-shop'>{`${item.price} zł`}</p>
-                        </div>
-                    ))}
-                    </div></p></Link>
-                {admin?<Link to='/add'><p className='p'>New post</p></Link>:null}
-            </div>
-        </div>
+        <Popup/>
+        <Navbar/>
         <div id='all'>
         <div className='slider'>
             <div className='prev-slide' onClick={goToPrev}>❮</div>
@@ -129,7 +95,7 @@ export default function Navigation() {
                     <Link to='/shop/obcas'><button className='button-offert'>Oferta</button></Link>
             </div>
         </div>
-        <div className='title-products'>Nasza oferta:</div>
+        <div className='title-products'></div>
         <div>
 
         </div>
@@ -152,8 +118,8 @@ export default function Navigation() {
                                     </div>
                                 </div>
                                 <div id='products-buttons'>
-                                    <button id='pr-left'>Dodaj do koszyka</button>
-                                    <button id='pr-right'>Więcej</button>
+                                    <Link to={`/product/${item._id}`} className='a-pr'><button id='pr-left'>Więcej</button></Link>
+                                    <button id='pr-right' onClick={()=>{Cartdispatch({type:'ADD_NEW',payload:{name:item.name,img:item.img,price:item.price,quantity:1,size:35}})}}>Dodaj do koszyka</button>
                                 </div>
                             </div>
         ))}
@@ -162,4 +128,5 @@ export default function Navigation() {
         <div className='footer'>Inko03</div>
     </div>
   );
+
 }

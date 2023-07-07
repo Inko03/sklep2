@@ -46,7 +46,7 @@ export default function Login() {
       setErrmail(null)
       setErrpassword(null)
       setErrpassword2(null)
-    fetch((islogin?'http://localhost:2000/api/newuser':'http://localhost:2000/api/getuser'),{
+    fetch((islogin?'https://sklep-api.onrender.com/api/newuser':'https://sklep-api.onrender.com/api/getuser'),{
       method:'POST',
       headers:{
         'Content-Type':'application/json'
@@ -96,14 +96,8 @@ export default function Login() {
 }
 
 }
-//Pop up dispaly time 
-  if(login){
-          setTimeout(()=>{dispatch({type:"REGISTER-N",payload:null})},3000)
-  }
-
     return (
     <div id='main-login'>
-      <div className={login?"pop-log-reg is":"pop-log-reg"}>{message}</div>
       <Link to='/shop'><div id='back-to'>←</div></Link>
         {islogin?<div id='login'>
               <p id='title-login'>PULSO</p>

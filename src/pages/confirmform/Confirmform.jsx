@@ -8,7 +8,7 @@ export default function Confirmform() {
     const [dane, setDane]= useState({})
     useEffect(()=>{
         const getPost = async()=>{
-            await fetch(('http://localhost:2000/api/edituser'),{
+            await fetch(('https://sklep-api.onrender.com/api/edituser'),{
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json',

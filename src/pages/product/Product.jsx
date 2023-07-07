@@ -1,11 +1,44 @@
-import { useEffect, useState,useContext} from 'react'
+import { useEffect, useState,useRef, useContext} from 'react'
 import './product.css'
 import photo1 from '../../components/photo/but4.jpg'
 import photo2 from '../../components/photo/but3.jpg'
 import photo3 from '../../components/photo/but2.jpg'
 import photo4 from '../../components/photo/but5.jpg'
 import { Link, useLocation } from 'react-router-dom'
+import Slider from '../../components/slider/Slider'
+import Navbar from '../../components/navbar/Navbar'
+import {CartContext} from '../../context/CartContext'
+import Popup from '../../components/popup/Popup'
 export default function Product() {
+    const {Cartdispatch}= useContext(CartContext)
+    const {Cartmsg}=useContext(CartContext)
+    const sliderInfo = [
+        {
+            img:photo1,
+            price:300.99,
+            numer:"2kcx"
+        },
+        {
+            img:photo2,
+            price:250.99,
+            numer:"2kcx"
+        },
+        {
+            img:photo3,
+            price:140.99,
+            numer:"2kcx"
+        },
+        {
+            img:photo4,
+            price:200.99,
+            numer:"2kcx"
+        },
+        {
+            img:photo1,
+            price:120.99,
+            numer:"2kcx"
+        },
+    ]
     const location = useLocation()
     const [loader, setLoader]=useState(true)
     const id = location.pathname.split('/')[2]
@@ -22,7 +55,7 @@ export default function Product() {
     const [dane, setDane]=useState([])
     useEffect(()=>{
         const getPost = async()=>{
-            await fetch('http://localhost:2000/api/product/'+id)
+            await fetch('https://sklep-api.onrender.com/api/product/'+id)
             .then(res=>res.json())
             .then(data=>{setDane(data)
                 setZam({name:data.name,price:data.price,img:data.img,color:"red",size:"38",quantity:1})})
@@ -40,12 +73,11 @@ export default function Product() {
         setZam(newdata)
     }
 
-    console.log(dane.name)
     useEffect(()=>{
         setZam({name:dane.name})
     },[])
     const [msg,setMsg] =useState(false)
-    const [msgval,setMsgval] =useState("") 
+    const [msgval,setMsgval] =useState() 
     const name = cart.map((item)=>item.name)
     const addCart=(value)=>{
         const newProduct ={
@@ -68,7 +100,6 @@ export default function Product() {
         }
         window.scrollTo(0, 0);
     }
-    console.log(zam)
     //message update time activity
     if(msg===true){
                 setTimeout(()=>{setMsg(false)},3000)
@@ -80,10 +111,8 @@ export default function Product() {
         sessionStorage.setItem('shopcart',JSON.stringify(cart))
     },[cart])
     /////////////////////////////////////////////
-    const slides = [1,2,3,4]
-    const grab= (e)=>{
-        console.log(e.clientX)
-    }
+    let count = cart.length
+    console.log(msgval)
   return (<div id='product-main'>
     {loader?<div id='all-loader'><p id='loading'>Loading</p>
   <div id='words'>
@@ -92,8 +121,11 @@ export default function Product() {
       <span className='word'>text</span>
       <span className='word'>colors</span>
   </div></div>:
+    <div>
+        <Popup/>
+        <Navbar count={count}/>
     <div id='cart'>
-        <div className={`popup-message ${msg?"active":""}`}>{msgval}</div>
+    
         <Link to='/shop'><div id='back-to'>←</div></Link>
         <div id='big-screen'>
             <div id='bg-product'>
@@ -111,13 +143,13 @@ export default function Product() {
                 <span className='span-size'>{e}</span>
             </div>))}
         </div>
-        <div id='button'><button id='button-product'onClick={()=>addCart({name:zam.name,img:zam.img,price:zam.price,color:zam.color||"red",size:zam.size||"37",quantity:1})}>Dodaj do koszyka</button></div>
+        <div id='button'><button id='button-product'onClick={()=>{Cartdispatch({type:'ADD_NEW',payload:{name:zam.name,price:zam.price,img:zam.img,size:zam.size,quantity:1}})}}>Dodaj do koszyka</button></div>
         <p id='text-product'>{dane.description}</p>
         </div>
-
     </div>
-
-    </div>}
+    <p id='title-best'>Bestsellery</p>
+            <Slider info={sliderInfo}/>
+    </div></div>}
   </div>
   )
 }
