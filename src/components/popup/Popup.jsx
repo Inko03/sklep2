@@ -68,7 +68,6 @@ export default function Popup() {
     useEffect(()=>{
       setProgres(frame)
     },[frame])
-    console.log(frame)
   return (
     <div ref={popupTarget} className={`pop-log-reg`}  onMouseEnter={()=>setTriger(true)} onMouseLeave={()=>setTriger(false)}>
         <div id='popup-title'><span id='exit-popup' style={{pointerEvents:"none"}}>PULSO</span><span id='exit-popup' style={{cursor:'pointer'}} onClick={()=>{setExit(true)}}>&#10005;</span></div>
