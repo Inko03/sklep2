@@ -43,7 +43,7 @@ export default function Popup() {
         //hover on pop up
         if(triger){clearInterval(id)};
         //exit from pop up
-<<<<<<< HEAD
+
         if(exit){
           popupTarget.current.className="pop-log-reg";
           setTimeout(()=>{setFrame(0)},500);
@@ -51,10 +51,10 @@ export default function Popup() {
           setExit(false);
           setActive(false);
         }
-=======
+
           
         if(exit){popupTarget.current.className="pop-log-reg",setTimeout(()=>{setFrame(0)},500),clearInterval(id),setExit(false),setActive(false)};
->>>>>>> e5d41786d8e65a5c79b7c32ecfb166ebc52d9203
+
 
         return ()=>{clearInterval(id)};
       }
